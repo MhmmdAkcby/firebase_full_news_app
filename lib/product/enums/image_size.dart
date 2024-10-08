@@ -1,5 +1,6 @@
 enum ImageSizes {
-  hight(256);
+  hight(256),
+  normal(96);
 
   final int value;
   // ignore: sort_constructors_first

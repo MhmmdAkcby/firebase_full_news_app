@@ -39,6 +39,8 @@ dependencies:
   flutter_riverpod: ^2.5.1
   kartal: ^4.1.0
   equatable: ^2.0.5
+  responsive_framework: ^0.2.0
+  responsive_builder: ^0.7.1
 
   
   #firebase
@@ -55,6 +57,7 @@ dependencies:
   shared_preferences: ^2.3.2
   #
   package_info_plus: ^8.0.2
+ 
 
 dev_dependencies:
   flutter_test:

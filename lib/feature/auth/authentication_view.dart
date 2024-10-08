@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_full_news_app/feature/auth/authentication_provider.dart';
+import 'package:firebase_full_news_app/feature/home/home_view.dart';
 import 'package:firebase_full_news_app/product/constants/string_constants.dart';
+import 'package:firebase_full_news_app/product/widget/text/sub_title_text.dart';
+import 'package:firebase_full_news_app/product/widget/text/title_text.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart' as firebase;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +43,12 @@ class _AuthenticationViewState extends ConsumerState<AuthenticationView> {
             AuthStateChangeAction<SignedIn>(
               (context, state) {
                 if (state.user != null) checkUser(state.user);
+                Navigator.of(context).push(
+                  // ignore: inference_failure_on_instance_creation
+                  MaterialPageRoute(
+                    builder: (context) => const HomeView(),
+                  ),
+                );
               },
             ),
           ],
@@ -85,16 +94,13 @@ class _AuthenticationViewState extends ConsumerState<AuthenticationView> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          StringConstants.loginWelcomeBack,
-          style: context.general.textTheme.headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold),
+        const TitleText(
+          value: StringConstants.loginWelcomeBack,
         ),
         Padding(
           padding: context.padding.onlyTopLow,
-          child: Text(
-            StringConstants.loginWelcomeDetail,
-            style: context.general.textTheme.titleMedium?.copyWith(),
+          child: const SubTitleText(
+            value: StringConstants.loginWelcomeDetail,
           ),
         ),
       ],

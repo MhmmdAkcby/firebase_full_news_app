@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_full_news_app/feature/auth/authentication_view.dart';
+import 'package:firebase_full_news_app/feature/home/home_view.dart';
 import 'package:firebase_full_news_app/product/constants/string_constants.dart';
+import 'package:firebase_full_news_app/product/initiallize/app_builder.dart';
 import 'package:firebase_full_news_app/product/initiallize/application_start_init.dart';
 import 'package:firebase_full_news_app/product/initiallize/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +19,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: (context, child) => AppBuilder(child).build(),
       title: StringConstants.appName,
-      home: const AuthenticationView(),
       theme: AppTheme(context).theme,
+      home: _getInitialScreen(),
     );
+  }
+
+  Widget _getInitialScreen() {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      return const HomeView();
+    } else {
+      return const AuthenticationView();
+    }
   }
 }
