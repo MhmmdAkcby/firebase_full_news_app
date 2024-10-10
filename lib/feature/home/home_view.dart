@@ -1,3 +1,4 @@
+import 'package:firebase_full_news_app/feature/home/home_create/home_create_view.dart';
 import 'package:firebase_full_news_app/feature/home/home_provider.dart';
 import 'package:firebase_full_news_app/feature/home/sub_view/home_search_delegate.dart';
 import 'package:firebase_full_news_app/product/constants/color_constants.dart';
@@ -10,6 +11,7 @@ import 'package:firebase_full_news_app/product/widget/text/title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kartal/kartal.dart';
+import 'package:kartal/src/widget/route/slide_route.dart';
 
 part './sub_view/home_chips.dart';
 
@@ -49,8 +51,21 @@ class _HomeViewState extends ConsumerState<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: SafeArea(
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () async {
+          final response = await context.route.navigateToPage<bool?>(
+            const HomeCreateView(),
+            type: SlideType.BOTTOM,
+          );
+
+          if (response ?? false) {
+            await ref.read(_homeProvider.notifier).fetchAndLoad();
+          }
+        },
+      ),
+      body: SafeArea(
         child: Stack(
           children: [
             ListView(

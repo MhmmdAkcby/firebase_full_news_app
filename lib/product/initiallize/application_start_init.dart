@@ -1,5 +1,4 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart' show GoogleProvider;
 import 'package:firebase_full_news_app/firebase_options.dart';
 import 'package:firebase_full_news_app/product/initiallize/app_cache.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
